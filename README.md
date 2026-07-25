@@ -63,5 +63,3 @@ The notebook (`llm_gateway.ipynb`) is structured into distinct modules[cite: 3]:
 | **9. Gateway Guardrails** | Pre-call inspection hooks for PII, injections, and topic safety[cite: 3]. | `litellm.input_callback`[cite: 3] |
 
 ---
-
----
