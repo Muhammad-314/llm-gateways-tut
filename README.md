@@ -64,26 +64,4 @@ The notebook (`llm_gateway.ipynb`) is structured into distinct modules[cite: 3]:
 
 ---
 
-## 🛠️ Code Highlight: Pre-Call PII Guardrail Hook
-
-```python
-import re
-import litellm
-
-PII_PATTERNS = {
-    "EMAIL": r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}",
-    "PHONE": r"(\+91[\-\s]?)?[6-9]\d{9}",
-}
-
-def pii_input_guardrail(kwargs):
-    messages = kwargs.get("messages", [])
-    for msg in messages:
-        if msg.get("role") == "user":
-            for label, pattern in PII_PATTERNS.items():
-                msg["content"] = re.sub(pattern, f"<{label}_REDACTED>", msg["content"])
-
-# Attach globally to LiteLLM pre-call pipeline
-litellm.input_callback = [pii_input_guardrail]
-```[cite: 3]
-
 ---
